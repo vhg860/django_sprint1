@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+<!DOCTYPE html> 
+{% load static %}
+<html lang="ru"> 
+  <head>    
+    <title>{{ post.location }}.{{ post.date }}</title>
+  </head>
+  <body>	   
+    <main>
+      {% block content %}
+      <div class="container py-5">
+        <article>
+          <ul>
+            <li>
+              Место: {{ post.location }}              
+            </li>
+            <li>
+              Дата: {{ post.date }}
+            </li>
+            <li>
+              Категория: <a href="{% url 'blog:category_posts' post.category %}">{{ post.category }}</a>
+            </li>
+          </ul>         
+          <p>
+            {{ post.text }}
+          </p>          
+        </article>                
+      </div>
+      {% endblock %}
+    </main>
+  </body>
+</html>

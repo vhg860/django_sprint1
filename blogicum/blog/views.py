@@ -1,6 +1,5 @@
-from django.shortcuts import render
-
 from django.http import Http404
+from django.shortcuts import render
 
 
 posts = [
@@ -46,6 +45,10 @@ posts = [
     },
 ]
 
+post_id = {}
+for post in posts:
+    post_id[post['id']] = post
+
 
 def index(request):
     context = {'posts': reversed(posts), }
@@ -53,15 +56,13 @@ def index(request):
 
 
 def post_detail(request, pk):
-    template = 'blog/detail.html'
     try:
-        context = {'post': posts[pk]}
+        context = {'post': post_id[pk], }
     except IndexError:
-        raise Http404
-    return render(request, template, context)
+        raise Http404("Страница не существует")
+    return render(request, 'blog/detail.html', context)
 
 
 def category_posts(request, category_slug):
-    template = 'blog/category.html'
     context = {'category': category_slug, }
-    return render(request, template, context)
+    return render(request, 'blog/category.html', context)

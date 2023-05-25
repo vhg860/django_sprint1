@@ -5,6 +5,5 @@
   {% for post in posts %}
     <hr>
     {% include "includes/post.html" with truncate=True %}
-    <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
   {% endfor %}
 {% endblock %}

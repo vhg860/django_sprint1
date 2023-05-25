@@ -8,7 +8,8 @@
   </ul>
     <p>
       {% if truncate %}
-        {{ post.text|truncatewords:10 }}
+        {{ post.text|truncatewords:10 }} 
+        <br><a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
       {% else %}
         {{ post.text|linebreaksbr }}
       {% endif %}

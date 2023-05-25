@@ -45,9 +45,9 @@ posts = [
     },
 ]
 
-post_id = {}
+posts_id = {}
 for post in posts:
-    post_id[post['id']] = post
+    posts_id[post['id']] = post
 
 
 def index(request):
@@ -57,9 +57,9 @@ def index(request):
 
 def post_detail(request, pk):
     try:
-        context = {'post': post_id[pk], }
-    except IndexError:
-        raise Http404("Страница не существует")
+        context = {'post': posts_id[pk], }
+    except KeyError:
+        raise Http404(f"Страница не существует {pk}")
     return render(request, 'blog/detail.html', context)
 
 
